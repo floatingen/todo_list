@@ -9,7 +9,7 @@ class Category(models.Model):
     deleted_at = models.DateTimeField(null=True, blank=True)
     deleted = models.BooleanField(default=False)
 
-    def str(self):
+    def __str__(self):
         return self.name
 
 
@@ -20,7 +20,7 @@ class Priority(models.Model):
     deleted_at = models.DateTimeField(null=True, blank=True)
     deleted = models.BooleanField(default=False)
 
-    def str(self):
+    def __str__(self):
         return self.name
 
 
@@ -38,6 +38,5 @@ class Task(models.Model):
     category = models.ForeignKey(Category, on_delete=models.CASCADE)
     priority = models.ForeignKey(Priority, on_delete=models.CASCADE)
 
-    def str(self):
+    def __str__(self):
         return self.title
-
