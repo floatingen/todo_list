@@ -1,3 +1,5 @@
 .venv
 /.idea/*
 /To_Do_List/db.sqlite3
+/To_Do_List/main/migrations/*
+/hints.txt
