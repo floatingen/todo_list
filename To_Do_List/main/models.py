@@ -7,6 +7,7 @@ class Category(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     deleted_at = models.DateTimeField(null=True, blank=True)
+    created_by = models.CharField(max_length=100)
     deleted = models.BooleanField(default=False)
 
     def __str__(self):
@@ -18,6 +19,7 @@ class Priority(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     deleted_at = models.DateTimeField(null=True, blank=True)
+    created_by = models.CharField(max_length=100)
     deleted = models.BooleanField(default=False)
 
     def __str__(self):
