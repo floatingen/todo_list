@@ -1,3 +1,4 @@
+from django.contrib.auth.models import User
 from django.utils import timezone
 from rest_framework import serializers
 from .models import Task, Category, Priority
@@ -29,3 +30,9 @@ class PrioritySerializer(serializers.ModelSerializer):
         model = Priority
         fields = '__all__'
         read_only_fields = ('created_at', 'updated_at', 'deleted_at', 'deleted')
+
+
+class UserSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = User
+        fields = '__all__'
