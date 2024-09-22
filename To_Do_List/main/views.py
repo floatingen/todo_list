@@ -1,5 +1,6 @@
 from django.contrib.auth.models import User
 from rest_framework import viewsets
+from rest_framework.decorators import action
 from rest_framework.generics import get_object_or_404
 from rest_framework.response import Response
 from rest_framework.permissions import IsAuthenticated
@@ -14,10 +15,35 @@ class TaskViewSet(viewsets.ModelViewSet):
     serializer_class = TaskSerializer
     permission_classes = [IsAuthenticated]
 
-    # TODO:
-    #  Get all tasks by status (GET)
-    #  Get all tasks by category (GET)
-    #  Get all tasks by priority (GET)
+    @action(detail=False, methods=['GET'], url_path=r'status/(?P<status>\w+)')
+    def get_tasks_by_status(self, request, status=None):
+        tasks_by_status = {
+            True: Task.objects.filter(status=status),
+            False: Task.objects.filter(status=status, deleted=False, created_by=request.user.username)
+        }[request.user.is_staff]
+
+        serializer = TaskSerializer(tasks_by_status, many=True)
+        return Response(serializer.data)
+
+    @action(detail=False, methods=['GET'], url_path=r'category/(?P<category>\d+)')
+    def get_tasks_by_category(self, request, category=None):
+        tasks_by_category = {
+            True: Task.objects.filter(category=category),
+            False: Task.objects.filter(category=category, deleted=False, created_by=request.user.username)
+        }[request.user.is_staff]
+
+        serializer = TaskSerializer(tasks_by_category, many=True)
+        return Response(serializer.data)
+
+    @action(detail=False, methods=['GET'], url_path=r'priority/(?P<priority>\d+)')
+    def get_tasks_by_priority(self, request, priority=None):
+        tasks_by_priority = {
+            True: Task.objects.filter(priority=priority),
+            False: Task.objects.filter(priority=priority, deleted=False, created_by=request.user.username)
+        }[request.user.is_staff]
+
+        serializer = TaskSerializer(tasks_by_priority, many=True)
+        return Response(serializer.data)
 
     def list(self, request, *args, **kwargs):
         if request.user.is_staff:
@@ -193,6 +219,12 @@ class UserViewSet(viewsets.ModelViewSet):
     queryset = User.objects.all()
     serializer_class = UserSerializer
     permission_classes = [IsAuthenticated]
+
+    # TODO:
+    #  Login (POST)
+    #  Logout (POST)
+    #  Change password (POST)
+    #  Reset password (POST)
 
     def list(self, request, *args, **kwargs):
         if not request.user.is_staff:
