@@ -80,6 +80,8 @@ class TaskViewSet(viewsets.ModelViewSet):
 
         if not request.user.is_staff:
             username = request.user.username
+            if instance.deleted:
+                return Response(status=404)
             if instance.created_by != username:
                 return Response(status=403)
             category_id = request.data.get('category')
@@ -220,9 +222,7 @@ class UserViewSet(viewsets.ModelViewSet):
     serializer_class = UserSerializer
     permission_classes = [IsAuthenticated]
 
-    # TODO:
-    #  Login (POST)
-    #  Logout (POST)
+    # TODO: test that update user can change password
     #  Change password (POST)
     #  Reset password (POST)
 
