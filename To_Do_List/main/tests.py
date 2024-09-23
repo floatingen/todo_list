@@ -4,6 +4,78 @@ from rest_framework.test import APIClient
 from .models import Task, Category, Priority
 
 
+class TaskModelTest(TestCase):
+    def setUp(self):
+        self.user = TaskViewTest.create_user(username='username')
+        self.task = TaskViewTest.create_task(created_by=self.user.username)
+
+    def test_task(self):
+        result = Task.objects.get(pk=self.task.pk)
+
+        self.assertEqual(result.created_by, 'username')
+        self.assertEqual(result.title, 'title')
+        self.assertEqual(result.description, 'description')
+        self.assertEqual(result.status, 'Pending')
+        self.assertFalse(result.completed)
+        self.assertIsNotNone(result.created_at)
+        self.assertIsNone(result.completed_at)
+        self.assertIsNotNone(result.updated_at)
+        self.assertIsNone(result.deleted_at)
+        self.assertFalse(result.deleted)
+        self.assertEqual(1, result.category.pk)
+        self.assertEqual(1, result.priority.pk)
+
+
+class CategoryModelTest(TestCase):
+    def setUp(self):
+        self.user = TaskViewTest.create_user(username='username')
+        self.category = Category.objects.create(
+            created_by=self.user.username,
+            name='category_name',
+            description='category_description'
+        )
+
+    def test_category(self):
+        result = Category.objects.get(pk=self.category.pk)
+
+        self.assertEqual(result.name, 'category_name')
+        self.assertEqual(result.description, 'category_description')
+        self.assertIsNotNone(result.created_at)
+        self.assertIsNotNone(result.updated_at)
+        self.assertIsNone(result.deleted_at)
+        self.assertEqual(result.created_by, 'username')
+        self.assertFalse(result.deleted)
+
+
+class PriorityModelTest(TestCase):
+    def setUp(self):
+        self.user = TaskViewTest.create_user(username='username')
+        self.priority = Priority.objects.create(created_by=self.user.username, name='priority_name')
+
+    def test_category(self):
+        result = Priority.objects.get(pk=self.priority.pk)
+
+        self.assertEqual(result.name, 'priority_name')
+        self.assertIsNotNone(result.created_at)
+        self.assertIsNotNone(result.updated_at)
+        self.assertIsNone(result.deleted_at)
+        self.assertEqual(result.created_by, 'username')
+        self.assertFalse(result.deleted)
+
+
+class UserModelTest(TestCase):
+    def setUp(self):
+        self.user = TaskViewTest.create_user(username='username')
+
+    def test_user(self):
+        from django.contrib.auth.models import User
+        result = User.objects.get(pk=self.user.pk)
+
+        self.assertEqual(result.username, 'username')
+        self.assertFalse(result.is_staff)
+        self.assertTrue(result.is_active)
+
+
 class UserViewTest(TestCase):
     def setUp(self):
         self.client = APIClient()
@@ -178,7 +250,8 @@ class TaskViewTest(TestCase):
         token = Token.objects.create(user=user)
         return token
 
-    def create_task(self, created_by, deleted=False):
+    @staticmethod
+    def create_task(created_by, deleted=False):
         category = Category.objects.create(name='category_name')
         priority = Priority.objects.create(name='priority_name')
         task = Task.objects.create(
