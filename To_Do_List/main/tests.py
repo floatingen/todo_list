@@ -2,7 +2,53 @@ from django.test import TestCase
 from rest_framework.authtoken.models import Token
 from rest_framework.test import APIClient
 from .models import Task, Category, Priority
-from .views import TaskViewSet
+
+
+class UserViewTest(TestCase):
+    def setUp(self):
+        self.client = APIClient()
+        self.staff_user = TaskViewTest.create_user(is_staff=True, username='staff')
+        self.non_staff_user = TaskViewTest.create_user(is_staff=False, username='non_staff')
+
+        self.staff_token = TaskViewTest.create_token(self.staff_user)
+        self.non_staff_token = TaskViewTest.create_token(self.non_staff_user)
+
+    def test_staff_user_can_change_any_user_password(self):
+        # админ может изменить пароль любого пользователя.
+        self.client.force_authenticate(user=self.staff_user)
+
+        response1 = self.client.patch(f'/api/users/{self.staff_user.pk}/',
+                                     user=self.staff_user,
+                                     data={'password': 'new_password'})
+        self.assertEqual(response1.status_code, 200)
+        self.assertEqual('new_password', response1.data.get('password'))
+
+        response2 = self.client.patch(f'/api/users/{self.non_staff_user.pk}/',
+                                      user=self.staff_user,
+                                      data={'password': 'new_password'})
+        self.assertEqual(response2.status_code, 200)
+        self.assertEqual('new_password', response2.data.get('password'))
+
+    def test_non_staff_user_can_change_own_password(self):
+        # пользователь может изменить свой пароль.
+        self.client.force_authenticate(user=self.non_staff_user)
+
+        response1 = self.client.patch(f'/api/users/{self.non_staff_user.pk}/',
+                                      user=self.non_staff_user,
+                                      data={'password': 'new_password'})
+        self.assertEqual(response1.status_code, 200)
+        self.assertEqual('new_password', response1.data.get('password'))
+
+        response2 = self.client.patch(f'/api/users/{self.staff_user.pk}/',
+                                      user=self.non_staff_user,
+                                      data={'password': 'new_password'})
+        self.assertEqual(response2.status_code, 403)
+
+        non_staff_user2 = TaskViewTest.create_user(is_staff=False, username='non_staff2')
+        response3 = self.client.patch(f'/api/users/{non_staff_user2.pk}/',
+                                      user=self.non_staff_user,
+                                      data={'password': 'new_password'})
+        self.assertEqual(response3.status_code, 403)
 
 
 class TaskViewTest(TestCase):
@@ -120,13 +166,15 @@ class TaskViewTest(TestCase):
         self.assertEqual(response.status_code, 404)
         self.assertTrue(Task.objects.filter(pk=instance.pk, deleted=True).exists())
 
-    def create_user(self, username, is_staff=False):
+    @staticmethod
+    def create_user(username, is_staff=False):
         # тестовый пользователь
         from django.contrib.auth.models import User
         user = User.objects.create_user(username=username, password='test_password', is_staff=is_staff)
         return user
 
-    def create_token(self, user):
+    @staticmethod
+    def create_token(user):
         token = Token.objects.create(user=user)
         return token
 

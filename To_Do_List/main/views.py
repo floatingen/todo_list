@@ -222,10 +222,6 @@ class UserViewSet(viewsets.ModelViewSet):
     serializer_class = UserSerializer
     permission_classes = [IsAuthenticated]
 
-    # TODO: test that update user can change password
-    #  Change password (POST)
-    #  Reset password (POST)
-
     def list(self, request, *args, **kwargs):
         if not request.user.is_staff:
             return Response(status=403)
@@ -251,7 +247,7 @@ class UserViewSet(viewsets.ModelViewSet):
     def update(self, request, *args, **kwargs):
         instance = self.get_object()
 
-        if not request.user.is_staff or instance != request.user:
+        if (not request.user.is_staff) and instance != request.user:
             return Response(status=403)
 
         serializer = self.get_serializer(instance, data=request.data, partial=True)
