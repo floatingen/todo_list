@@ -15,6 +15,17 @@ from pathlib import Path
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
+# ADMINS = (
+#     # ('Your Name', 'your_email@domain.com'),
+#     ('admin', 'vladislav.seleznev99@gmail.com'),
+# )
+# ADMIN_USERNAME = 'admin'
+# ADMIN_EMAIL = 'vladislav.seleznev99@gmail.com'
+# ADMIN_INITIAL_PASSWORD = 'admin'
+DJANGO_SUPERUSER_USERNAME = 'admin'
+DJANGO_SUPERUSER_EMAIL = 'vladisalv.seleznev99@gmail.com'
+DJANGO_SUPERUSER_PASSWORD = 'admin99password'
+
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
@@ -26,6 +37,8 @@ SECRET_KEY = 'django-insecure-0%jd%df8ic*m3qsfiww+rcw=t*pm9n4vf5ra-le)d-ciam94^v
 DEBUG = True
 
 ALLOWED_HOSTS = []
+
+STATIC_URL = '/static/'
 
 
 # Application definition
@@ -82,12 +95,15 @@ WSGI_APPLICATION = 'To_Do_List.wsgi.application'
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+    "default": {
+        "NAME": "todo",
+        "ENGINE": "django.db.backends.postgresql",
+        "USER": "postgres",
+        "PASSWORD": "postgres",
+        "HOST": "db",
+        "PORT": "5432"
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/5.1/ref/settings/#auth-password-validators
@@ -123,7 +139,7 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.1/howto/static-files/
 
-STATIC_URL = 'static/'
+STATIC_ROOT = BASE_DIR / "staticfiles"
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field

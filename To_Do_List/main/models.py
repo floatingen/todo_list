@@ -7,7 +7,7 @@ class Category(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     deleted_at = models.DateTimeField(null=True, blank=True)
-    created_by = models.CharField(max_length=100)
+    created_by = models.CharField(max_length=100, default='system')
     deleted = models.BooleanField(default=False)
 
     def __str__(self):
@@ -19,7 +19,7 @@ class Priority(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     deleted_at = models.DateTimeField(null=True, blank=True)
-    created_by = models.CharField(max_length=100)
+    created_by = models.CharField(max_length=100, default='system')
     deleted = models.BooleanField(default=False)
 
     def __str__(self):
@@ -27,7 +27,7 @@ class Priority(models.Model):
 
 
 class Task(models.Model):
-    created_by = models.CharField(max_length=100)
+    created_by = models.CharField(max_length=100, default='system')
     title = models.CharField(max_length=200)
     description = models.TextField(blank=True)
     status = models.CharField(max_length=20, default="Pending")
