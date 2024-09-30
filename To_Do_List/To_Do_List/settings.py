@@ -15,13 +15,6 @@ from pathlib import Path
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-# ADMINS = (
-#     # ('Your Name', 'your_email@domain.com'),
-#     ('admin', 'vladislav.seleznev99@gmail.com'),
-# )
-# ADMIN_USERNAME = 'admin'
-# ADMIN_EMAIL = 'vladislav.seleznev99@gmail.com'
-# ADMIN_INITIAL_PASSWORD = 'admin'
 DJANGO_SUPERUSER_USERNAME = 'admin'
 DJANGO_SUPERUSER_EMAIL = 'vladisalv.seleznev99@gmail.com'
 DJANGO_SUPERUSER_PASSWORD = 'admin99password'
@@ -53,6 +46,8 @@ INSTALLED_APPS = [
     'main',
     'rest_framework',
     'rest_framework.authtoken',
+    'rest_framework_swagger',
+    'drf_yasg'
 ]
 
 MIDDLEWARE = [
