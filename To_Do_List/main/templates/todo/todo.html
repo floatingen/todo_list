@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="{{ LANGUAGE_CODE }}">
+<head>
+    {% load static %}
+    {% load i18n %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% trans "Панель управления" %}</title>
+    <script src="{% url 'javascript-catalog' %}"></script>
+    <script src="{% static 'main/js/todo.js' %}"></script>
+    <link rel="stylesheet" href="{% static 'main/css/todo.css' %}">
+</head>
+<body>
+    <a href="/login/" class="link-button" onclick="logout()">{% trans "Выход" %}</a>
+    <h1>{% trans "Панель управления" %}</h1>
+    <div style="width: 100px; float: right; padding-right: 6px;">
+        {% include 'lang/language_switcher.html' %}
+    </div>
+
+    <h2>{% trans "Задачи" %}</h2>
+    <button onclick="toggleForm('task')">{% trans "Добавить задачу" %}</button>
+    <div id="taskForm" class="hidden">
+        <input type="text" id="taskTitle" placeholder='{% trans "Название задачи" %}'>
+        <textarea id="taskDescription" placeholder='{% trans "Описание задачи" %}'></textarea>
+        <select id="taskStatus">
+            <option value="Pending">{% trans "В ожидании" %}</option>
+            <option value="In Progress">{% trans "В процессе" %}</option>
+            <option value="Completed">{% trans "Завершена" %}</option>
+        </select>
+        <select id="taskCategory">
+            <!-- Options will be loaded dynamically -->
+        </select>
+        <select id="taskPriority">
+            <!-- Options will be loaded dynamically -->
+        </select>
+        <button id="taskAdd" onclick="addTask()">{% trans "Сохранить задачу" %}</button>
+        <button id="taskUpdate" onclick="updateTask()" class="update-button">{% trans "Изменить задачу" %}</button>
+        <button id="taskCancel" onclick="toggleForm('task')" class="cancel-button">{% trans "Отмена" %}</button>
+    </div>
+    <table id="taskTable">
+        <thead>
+            <tr>
+                <th>{% trans "Название" %}</th>
+                <th>{% trans "Описание" %}</th>
+                <th>{% trans "Статус" %}</th>
+                <th>{% trans "Категория" %}</th>
+                <th>{% trans "Приоритет" %}</th>
+                <th>{% trans "Действия" %}</th>
+            </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+
+    <h2>{% trans "Категории" %}</h2>
+    <button onclick="toggleForm('category')">{% trans "Добавить категорию" %}</button>
+    <div id="categoryForm" class="hidden">
+        <input type="text" id="categoryName" placeholder='{% trans "Название категории" %}'>
+        <textarea id="categoryDescription" placeholder='{% trans "Описание категории" %}'></textarea>
+        <button id="categoryAdd" onclick="addCategory()">{% trans "Сохранить категорию" %}</button>
+        <button id="categoryUpdate" onclick="updateCategory()" class="update-button">{% trans "Изменить категорию" %}</button>
+        <button id="categoryCancel" onclick="toggleForm('category')" class="cancel-button">{% trans "Отмена" %}</button>
+    </div>
+    <table id="categoryTable">
+        <thead>
+            <tr>
+                <th>{% trans "Название" %}</th>
+                <th>{% trans "Описание" %}</th>
+                <th>{% trans "Действия" %}</th>
+            </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+
+    <h2>{% trans "Приоритеты" %}</h2>
+    <button onclick="toggleForm('priority')">{% trans "Добавить приоритет" %}</button>
+    <div id="priorityForm" class="hidden">
+        <input type="text" id="priorityName" placeholder='{% trans "Название приоритета" %}'>
+        <button id="priorityAdd" onclick="addPriority()">{% trans "Сохранить приоритет" %}</button>
+        <button id="priorityUpdate" onclick="updatePriority()" class="update-button">{% trans "Изменить приоритет" %}</button>
+        <button id="priorityCancel" onclick="toggleForm('priority')" class="cancel-button">{% trans "Отмена" %}</button>
+    </div>
+    <table id="priorityTable">
+        <thead>
+            <tr>
+                <th>{% trans "Название" %}</th>
+                <th>{% trans "Действия" %}</th>
+            </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+</body>
+</html>

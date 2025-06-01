@@ -15,9 +15,16 @@ from pathlib import Path
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
+# ADMINS = (
+#     # ('Your Name', 'your_email@domain.com'),
+#     ('admin', 'vladislav.seleznev99@gmail.com'),
+# )
+# ADMIN_USERNAME = 'admin'
+# ADMIN_EMAIL = 'vladislav.seleznev99@gmail.com'
+# ADMIN_INITIAL_PASSWORD = 'admin'
 DJANGO_SUPERUSER_USERNAME = 'admin'
 DJANGO_SUPERUSER_EMAIL = 'vladisalv.seleznev99@gmail.com'
-DJANGO_SUPERUSER_PASSWORD = 'admin99password'
+DJANGO_SUPERUSER_PASSWORD = 'admin'
 
 
 # Quick-start development settings - unsuitable for production
@@ -57,11 +64,12 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'django.middleware.locale.LocaleMiddleware'
 ]
 
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': [
-        'rest_framework.authentication.TokenAuthentication',
+        'rest_framework.authentication.SessionAuthentication',
     ]
 }
 
@@ -95,7 +103,7 @@ DATABASES = {
         "ENGINE": "django.db.backends.postgresql",
         "USER": "postgres",
         "PASSWORD": "postgres",
-        "HOST": "db",
+        "HOST": "localhost",
         "PORT": "5432"
     }
 }
@@ -128,8 +136,18 @@ TIME_ZONE = 'Europe/Minsk'
 
 USE_I18N = True
 
+USE_L10N = True
+
 USE_TZ = True
 
+LANGUAGES = [
+    ('en', 'English'),
+    ('ru', 'Русский')
+]
+
+LOCALE_PATHS = [
+    BASE_DIR / 'locale'
+]
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.1/howto/static-files/
@@ -140,3 +158,5 @@ STATIC_ROOT = BASE_DIR / "staticfiles"
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+LOGOUT_REDIRECT_URL = 'login/'

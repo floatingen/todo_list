@@ -1,0 +1,176 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-06-01 20:29+0300\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+#: .\To_Do_List\main\templates\login\login.html:7
+#: .\To_Do_List\main\templates\login\login.html:80
+msgid "Вход"
+msgstr "Login"
+
+#: .\To_Do_List\main\templates\login\login.html:84
+#: .\To_Do_List\main\templates\registration\registration.html:83
+msgid "Имя пользователя"
+msgstr "Username"
+
+#: .\To_Do_List\main\templates\login\login.html:87
+#: .\To_Do_List\main\templates\registration\registration.html:87
+msgid "Пароль"
+msgstr "Password"
+
+#: .\To_Do_List\main\templates\login\login.html:90
+#: .\To_Do_List\main\templates\registration\registration.html:111
+msgid "Войти"
+msgstr "Log in"
+
+#: .\To_Do_List\main\templates\login\login.html:107
+#: .\To_Do_List\main\templates\registration\registration.html:93
+msgid "Зарегистрироваться"
+msgstr "Register"
+
+#: .\To_Do_List\main\templates\registration\registration.html:7
+#: .\To_Do_List\main\templates\registration\registration.html:79
+msgid "Регистрация"
+msgstr "Registration"
+
+#: .\To_Do_List\main\templates\registration\registration.html:90
+msgid "Подтвердите пароль"
+msgstr "Confirm password"
+
+#: .\To_Do_List\main\templates\todo\todo.html:8
+#: .\To_Do_List\main\templates\todo\todo.html:15
+msgid "Панель управления"
+msgstr "Control panel"
+
+#: .\To_Do_List\main\templates\todo\todo.html:14
+msgid "Выход"
+msgstr "Log out"
+
+#: .\To_Do_List\main\templates\todo\todo.html:20
+msgid "Задачи"
+msgstr "Tasks"
+
+#: .\To_Do_List\main\templates\todo\todo.html:21
+msgid "Добавить задачу"
+msgstr "Add a task"
+
+#: .\To_Do_List\main\templates\todo\todo.html:23
+msgid "Название задачи"
+msgstr "Task title"
+
+#: .\To_Do_List\main\templates\todo\todo.html:24
+msgid "Описание задачи"
+msgstr "Task description"
+
+#: .\To_Do_List\main\templates\todo\todo.html:26
+msgid "В ожидании"
+msgstr "Pending"
+
+#: .\To_Do_List\main\templates\todo\todo.html:27
+msgid "В процессе"
+msgstr "In Progress"
+
+#: .\To_Do_List\main\templates\todo\todo.html:28
+msgid "Завершена"
+msgstr "Completed"
+
+#: .\To_Do_List\main\templates\todo\todo.html:36
+msgid "Сохранить задачу"
+msgstr "Save task"
+
+#: .\To_Do_List\main\templates\todo\todo.html:37
+msgid "Изменить задачу"
+msgstr "Edit task"
+
+#: .\To_Do_List\main\templates\todo\todo.html:38
+#: .\To_Do_List\main\templates\todo\todo.html:61
+#: .\To_Do_List\main\templates\todo\todo.html:80
+msgid "Отмена"
+msgstr "Cancel"
+
+#: .\To_Do_List\main\templates\todo\todo.html:43
+#: .\To_Do_List\main\templates\todo\todo.html:66
+#: .\To_Do_List\main\templates\todo\todo.html:85
+msgid "Название"
+msgstr "Name"
+
+#: .\To_Do_List\main\templates\todo\todo.html:44
+#: .\To_Do_List\main\templates\todo\todo.html:67
+msgid "Описание"
+msgstr "Description"
+
+#: .\To_Do_List\main\templates\todo\todo.html:45
+msgid "Статус"
+msgstr "Status"
+
+#: .\To_Do_List\main\templates\todo\todo.html:46
+msgid "Категория"
+msgstr "Category"
+
+#: .\To_Do_List\main\templates\todo\todo.html:47
+msgid "Приоритет"
+msgstr "Priority"
+
+#: .\To_Do_List\main\templates\todo\todo.html:48
+#: .\To_Do_List\main\templates\todo\todo.html:68
+#: .\To_Do_List\main\templates\todo\todo.html:86
+msgid "Действия"
+msgstr "Actions"
+
+#: .\To_Do_List\main\templates\todo\todo.html:54
+msgid "Категории"
+msgstr "Categories"
+
+#: .\To_Do_List\main\templates\todo\todo.html:55
+msgid "Добавить категорию"
+msgstr "Add a category"
+
+#: .\To_Do_List\main\templates\todo\todo.html:57
+msgid "Название категории"
+msgstr "Category name"
+
+#: .\To_Do_List\main\templates\todo\todo.html:58
+msgid "Описание категории"
+msgstr "Category description"
+
+#: .\To_Do_List\main\templates\todo\todo.html:59
+msgid "Сохранить категорию"
+msgstr "Save category"
+
+#: .\To_Do_List\main\templates\todo\todo.html:60
+msgid "Изменить категорию"
+msgstr "Edit category"
+
+#: .\To_Do_List\main\templates\todo\todo.html:74
+msgid "Приоритеты"
+msgstr "Priorities"
+
+#: .\To_Do_List\main\templates\todo\todo.html:75
+msgid "Добавить приоритет"
+msgstr "Add a priority"
+
+#: .\To_Do_List\main\templates\todo\todo.html:77
+msgid "Название приоритета"
+msgstr "Priority name"
+
+#: .\To_Do_List\main\templates\todo\todo.html:78
+msgid "Сохранить приоритет"
+msgstr "Save priority"
+
+#: .\To_Do_List\main\templates\todo\todo.html:79
+msgid "Изменить приоритет"
+msgstr "Edit priority"
