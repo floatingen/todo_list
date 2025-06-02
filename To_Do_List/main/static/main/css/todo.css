@@ -1,0 +1,72 @@
+body {
+    font-family: sans-serif;
+    margin: 20px;
+}
+table {
+    border-collapse: collapse;
+    width: 100%;
+}
+th, td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+}
+th {
+    background-color: #f2f2f2;
+}
+input[type="text"], textarea, select {
+    width: 100%;
+    padding: 8px;
+    margin: 5px 0;
+    box-sizing: border-box;
+}
+button {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    cursor: pointer;
+}
+button:hover {
+    background-color: #3E8E41;
+}
+.link-button {
+    background-color: #0B5DE0;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    cursor: pointer;
+    float: right;
+}
+.link-button:hover {
+    background-color: #0844A3;
+}
+.langForm {
+    float: right;
+}
+.update-button {
+    button;
+    background-color: #D19D41;
+}
+.update-button:hover {
+    background-color: #B38637;
+}
+.delete-button {
+    button;
+    background-color: #BD461A;
+}
+.delete-button:hover {
+    button;
+    background-color: #9C3914;
+}
+.cancel-button {
+    button;
+    background-color: #0B5DE0;
+}
+.cancel-button:hover {
+    button;
+    background-color: #0844A3;
+}
+.hidden {
+    display: none;
+}
